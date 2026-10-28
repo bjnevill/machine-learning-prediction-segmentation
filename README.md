@@ -1,26 +1,57 @@
-# Machine Learning: Wine Quality Prediction & Retail Customer Segmentation
+# Wine Quality Prediction and Retail Customer Segmentation
 
-**Individual academic project · Ngee Ann Polytechnic, Diploma in Data Science · 2026**
+Individual academic project · Ngee Ann Polytechnic · Machine Learning 1 · Semester 3 folder, April 2026 coursework
 
-Two end-to-end machine learning studies: supervised regression on white-wine quality and unsupervised segmentation of retail customers.
+Two studies apply Python machine learning to product quality and customer behaviour. They demonstrate model evaluation and business interpretation relevant to analytics internships; they are not finance models or work for an employer.
 
-## Part 1 — Wine quality prediction
-- Explored 4,898 samples and analysed feature distributions, correlations and outliers.
-- Compared **Linear Regression**, **K-Nearest Neighbours** and **Decision Tree Regressor**.
-- Used training-only preprocessing, IQR capping, transformations, standardisation and GridSearchCV.
-- Testing results reported in the assignment: KNN **RMSE 0.714, R² 0.341**; tuned Decision Tree **RMSE 0.725, R² 0.322**.
-- Selected the tuned tree for a balance of interpretability and generalisation, rather than simply choosing the top test metric.
+## Business problems
 
-## Part 2 — Retail customer segmentation
-- Cleaned online retail transactions, excluding invalid records, cancellations and returns.
-- Aggregated transactions per customer; engineered **Recency, Frequency, Monetary (RFM)** and average basket value.
-- Compared **K-means (4 clusters; silhouette 0.409)** against **hierarchical clustering (2 clusters; silhouette 0.448)**.
-- Preferred four K-means groups for more actionable business segments: loyal high-value, at-risk low-value, high-basket occasional and other customers.
+**Wine quality:** estimate white-wine quality scores from physicochemical measurements to explore data-assisted quality assessment.
 
-## Skills
-Python · pandas · scikit-learn · EDA · Feature Engineering · Regression · Clustering · Model Evaluation · Business Interpretation
+**Retail segmentation:** group customers by purchasing behaviour so a business can consider retention and marketing priorities.
 
-## Source files
-Open [`analysis.ipynb`](./analysis.ipynb) for the original analysis code (with student identifiers and stored outputs removed), and [`requirements.txt`](./requirements.txt) for Python dependencies. The notebook requires its original datasets to run. Raw coursework datasets are not redistributed here.
+## Methodology and tools
 
-*Educational analysis; model metrics are from the submitted academic report.*
+- Wine: explore 4,898 records, split training and test data, fit IQR capping on training data, apply selected Yeo–Johnson transformations and scaling, and compare linear regression, KNN and decision trees. Tune the tree using GridSearchCV.
+- Retail: remove invalid transactions, missing customer IDs, cancellations and returns; aggregate customer-level recency, frequency, monetary value and average basket value; transform and scale features; compare K-means and average-linkage hierarchical clustering using silhouette scores and business interpretation.
+- Python, pandas, NumPy, matplotlib, seaborn, scikit-learn, SciPy, feature-engine and statsmodels.
+
+## Key findings from the submitted report
+
+| Model / approach | Reported result | Interpretation |
+| --- | --- | --- |
+| KNN wine regressor | Test RMSE 0.714; R² 0.341 | Best reported test prediction, with a larger train/test gap |
+| Tuned decision tree | Test RMSE 0.725; R² 0.322 | Selected in the submission for interpretability and generalisation |
+| K-means, four groups | Silhouette 0.409 | Preferred for more actionable customer groups |
+| Hierarchical, two groups | Silhouette 0.448 | Better silhouette, but coarser segmentation |
+
+These are historical submission metrics, not newly improved results. See [the report text](reports/submitted-report.md) for the original discussion.
+
+## Files and reproduction
+
+- [analysis.ipynb](analysis.ipynb): original analysis with template headers, stored outputs and execution metadata removed. One relative path was normalised from `Data` to `data`; modelling code was preserved.
+- [requirements.txt](requirements.txt): complete direct imports and JupyterLab.
+- `reports/`: original report narrative in a privacy-cleaned text edition.
+- `docs/VALIDATION.md`: what was actually checked and any execution failures.
+
+```bash
+python -m venv .venv
+# Windows PowerShell:
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m jupyterlab
+```
+
+Start JupyterLab from this repository and open `analysis.ipynb`. Provide the original course files at `data/winequality-white.csv` and `data/online_retail.csv`. Use the supplied course CSV format rather than silently substituting a differently delimited download. Raw retail data contains customer identifiers; it is excluded from Git and was used only in a local validation copy. Dataset redistribution rights have not been established.
+
+## Limitations
+
+Wine quality is an ordinal score modelled as regression; explanatory power is modest. The held-out test set is used in model comparison, so an additional untouched evaluation set would strengthen model selection. Preprocessing is fitted before GridSearchCV rather than inside each fold, which can make CV tuning optimistic. Customer segments are exploratory, not proof that a marketing intervention will work. No deployment, causal impact or commercial revenue claim is made. The original report acknowledges generative AI support.
+
+## Analysis previews
+
+![Wine feature correlations](assets/wine-correlations.png)
+
+![Retail clustering elbow curve](assets/retail-elbow.png)
+
+Generated from the original plotting code using the local course data during validation.
