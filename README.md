@@ -21,6 +21,6 @@ Two end-to-end machine learning studies: supervised regression on white-wine qua
 Python · pandas · scikit-learn · EDA · Feature Engineering · Regression · Clustering · Model Evaluation · Business Interpretation
 
 ## Source files
-The project notebook and dependencies are available in the accompanying [downloadable package](https://github.com/bjnevill/machine-learning-prediction-segmentation) once uploaded. **The notebook has not yet been pushed into this repository.** Raw coursework datasets are not redistributed here.
+Open [`analysis.ipynb`](./analysis.ipynb) for the original analysis code (with student identifiers and stored outputs removed), and [`requirements.txt`](./requirements.txt) for Python dependencies. The notebook requires its original datasets to run. Raw coursework datasets are not redistributed here.
 
 *Educational analysis; model metrics are from the submitted academic report.*
