@@ -6,3 +6,5 @@ Data/
 datasets/
 *.html
 .env
+*.pyc
+venv/
