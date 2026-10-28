@@ -1,7 +1,8 @@
-.ipynb_checkpoints/
-__pycache__/
-*.pyc
-.env
 .venv/
-venv/
+__pycache__/
+.ipynb_checkpoints/
 data/
+Data/
+datasets/
+*.html
+.env
